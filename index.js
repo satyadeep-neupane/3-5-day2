@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const PORT = 3000;
+const { set } = require('./app/config/mailer');
 
-// const URL = "mongodb+srv://QwPlfyWFO0GtlqMg:QwPlfyWFO0GtlqMg@cluster0.w50r0wi.mongodb.net/?retryWrites=true&w=majority"
-const URL = "mongodb://localhost:27017/mern";
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+
+const URL = process.env.ENV == 'production' ? process.env.DATABASE_URL : 'mongodb://localhost:27017/MERN';
 
 async function dbConnect()
 {
     try {
+        mongoose.set('strictQuery', false);
         await mongoose.connect(URL);
-        console.log('Database connected');
+        console.log(`Database connected: ${URL}`);
     } catch (error) {
         console.log('Database connection error: ', error.message);
     }

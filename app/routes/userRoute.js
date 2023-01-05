@@ -2,8 +2,11 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 
 router.route('/')
-    .get(userController.list)
+    // .get(userController.list)
     .post(userController.store);
+
+router.route('/:name?')
+    .get(userController.list)
 
 // router.get('/', userController.list);
 // router.post('/', userController.store);
