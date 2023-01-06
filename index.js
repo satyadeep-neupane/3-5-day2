@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { set } = require('./app/config/mailer');
 
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
-const URL = process.env.ENV == 'production' ? process.env.DATABASE_URL : 'mongodb://localhost:27017/MERN';
+const URL = process.env.ENV == 'production' ? process.env.DATABASE_URL : 'mongodb://localhost:27017/mern';
 
 async function dbConnect()
 {
